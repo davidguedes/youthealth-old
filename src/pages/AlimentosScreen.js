@@ -37,19 +37,39 @@ function AlimentosScreen() {
 
   const navigation = useNavigation();
 
-  const handleLogoutClick = () => {
-    navigation.goBack();
+  const handleCadastrarClick = () => {
+    navigation.navigate('CadastrarAlimento');
+  }
+
+  const handleEditarClick = () => {
+    navigation.navigate('EditarAlimento');
+  }
+
+  const handleListarClick = () => {
+    navigation.navigate('Alimentos');
   }
 
   return (
     <Page>
       <Header>
-        <Title>Alimentos</Title>
+        <Title>Listar Alimentos</Title>
         <Botao
           activeOpacity={0.6}
           underlayColor="#DDDDDD"
-          onPress={handleLogoutClick}>
-          <TextButton>Logout</TextButton>
+          onPress={handleCadastrarClick}>
+          <TextButton>Cadastrar alimento</TextButton>
+        </Botao>
+        <Botao
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={handleEditarClick}>
+          <TextButton>Editar alimento</TextButton>
+        </Botao>
+        <Botao
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={handleListarClick}>
+          <TextButton>Listar alimento</TextButton>
         </Botao>
       </Header>
     </Page>

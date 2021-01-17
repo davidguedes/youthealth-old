@@ -12,7 +12,7 @@ import MainTab from './src/navigators/MainTab';
 function App() {
   return (
     <NavigationContainer>
-      <MainTab />
+      <MainStack />
     </NavigationContainer>
   );
 }

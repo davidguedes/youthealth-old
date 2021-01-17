@@ -1,21 +1,57 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import CustomTabBar from '../components/CustomTabBar'
 import styled from 'styled-components/native';
-import LoginScreen from '../pages/LoginScreen';
-import HomeScreen from '../pages/HomeScreen';
-import RegisterScreen from '../pages/RegisterScreen';
-import RefeicoesScreen from '../pages/RefeicoesScreen';
-import AlimentosScreen from '../pages/AlimentosScreen';
-import ProvasScreen from '../pages/ProvasScreen';
+import HomeStack from './HomeStack';
+import RefeicoesStack from './RefeicoesStack';
+import AlimentosStack from './AlimentosStack';
+import ProvasStack from './ProvasStack';
 
 const Tab = createBottomTabNavigator();
 
+const Image = styled.Image``;
+
 export default () => (
-  <Tab.Navigator tabBar={(props) => <CustomTabBar {...props} />}>
-    <Tab.Screen name="Home" tabBarIcon="../assets/home-icon-g.png" component={HomeScreen} />
-    <Tab.Screen name="Refeicoes" tabBarIcon='../assets/refeicoes-icon-b.png' component={RefeicoesScreen} />
-    <Tab.Screen name="Alimentos" tabBarIcon='../assets/alimentos-icon-b.png' component={AlimentosScreen} />
-    <Tab.Screen name="Provas" tabBarIcon='../assets/provas-icon-b.png' component={ProvasScreen} />
-  </Tab.Navigator>
+  //<Tab.Navigator initialRouteName="Home" tabBar={(props) => <CustomTabBar {...props} />}>
+  <Tab.Navigator initialRouteName="Home" tabBarOptions={{
+    activeTintColor: '#000',
+    inactiveTintColor: '#777',
+    style: {
+    },
+    labelStyle: {
+      textTransform: 'uppercase'
+    }
+  }} >
+    <Tab.Screen name="Home" component={HomeStack}
+      options={{
+        tabBarLabel: 'Home',
+        tabBarIcon: ({ focused }) => (
+          <Image source={focused ? require('../assets/home-icon-b.png') : require('../assets/home-icon-g.png')} style={{ width: 24, height: 24 }} />
+        ),
+      }}
+    />
+    <Tab.Screen name="Refeicoes" component={RefeicoesStack}
+      options={{
+        tabBarLabel: 'Refeições',
+        tabBarIcon: ({ focused }) => (
+          <Image source={focused ? require('../assets/refeicoes-icon-b.png') : require('../assets/refeicoes-icon-g.png')} style={{ width: 24, height: 24 }} />
+        ),
+      }}
+    />
+    <Tab.Screen name="Alimentos" component={AlimentosStack}
+      options={{
+        tabBarLabel: 'Alimentos',
+        tabBarIcon: ({ focused }) => (
+          <Image source={focused ? require('../assets/alimentos-icon-b.png') : require('../assets/alimentos-icon-g.png')} style={{ width: 24, height: 24 }} />
+        ),
+      }}
+    />
+    <Tab.Screen name="Provas" component={ProvasStack}
+      options={{
+        tabBarLabel: 'Provas',
+        tabBarIcon: ({ focused }) => (
+          <Image source={focused ? require('../assets/provas-icon-b.png') : require('../assets/provas-icon-g.png')} style={{ width: 24, height: 24 }} />
+        ),
+      }}
+    />
+  </Tab.Navigator >
 );

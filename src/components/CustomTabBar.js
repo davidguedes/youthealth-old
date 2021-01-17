@@ -17,7 +17,7 @@ const TabLabel = styled.Text`
   font-size:16px;
 `;
 
-const TabIcon = styled.Image``;
+const Image = styled.Image``;
 
 function CustomTabBar({ state, descriptors, navigation }) {
   return (
@@ -30,36 +30,7 @@ function CustomTabBar({ state, descriptors, navigation }) {
 
         let label = route.name;
 
-        let imgSource = options.tabBarIcon;
-
-        alert(imgSource);
-
-        switch (route.name) {
-          case 'Home':
-            if (!isFocused)
-              imgSource = require('../assets/home-icon-g.png');
-            else
-              imgSource = require('../assets/home-icon-b.png');
-            break;
-          case 'Refeicoes':
-            if (!isFocused)
-              imgSource = require('../assets/refeicoes-icon-g.png');
-            else
-              imgSource = require('../assets/refeicoes-icon-b.png');
-            break;
-          case 'Alimentos':
-            if (!isFocused)
-              imgSource = require('../assets/alimentos-icon-g.png');
-            else
-              imgSource = require('../assets/alimentos-icon-b.png');
-            break;
-          case 'Provas':
-            if (!isFocused)
-              imgSource = require('../assets/provas-icon-g.png');
-            else
-              imgSource = require('../assets/provas-icon-b.png');
-            break;
-        }
+        const imgIcon = options.tabBarIcon;
 
         if (options.tabBarLabel != undefined) {
           label = route.tabBarLabel;
@@ -72,9 +43,9 @@ function CustomTabBar({ state, descriptors, navigation }) {
         }
 
         return (
-          <TabItem key={index} undeleyColor="transparent" onPress={handleTabPress}>
+          <TabItem key={index} undeleyColor="#dd99dd" activeOpacity={0.5} onPress={handleTabPress}>
             <>
-              <TabIcon source={imgSource} style={{ width: 24, height: 24 }} />
+              <Image source={imgIcon} style={{ width: 24, height: 24 }} />
               <TabLabel>{label}</TabLabel>
             </>
           </TabItem>

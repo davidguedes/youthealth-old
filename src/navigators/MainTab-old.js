@@ -1,9 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import styled from 'styled-components/native';
-import LoginScreen from '../pages/LoginScreen';
 import HomeScreen from '../pages/HomeScreen';
-import RegisterScreen from '../pages/RegisterScreen';
 import RefeicoesScreen from '../pages/RefeicoesScreen';
 import AlimentosScreen from '../pages/AlimentosScreen';
 import ProvasScreen from '../pages/ProvasScreen';

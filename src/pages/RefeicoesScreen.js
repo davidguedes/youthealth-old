@@ -37,19 +37,39 @@ function RefeicoesScreen() {
 
   const navigation = useNavigation();
 
-  const handleLogoutClick = () => {
-    navigation.goBack();
+  const handleCadastrarClick = () => {
+    navigation.navigate('CadastrarRefeicao');
+  }
+
+  const handleEditarClick = () => {
+    navigation.navigate('EditarRefeicao');
+  }
+
+  const handleListarClick = () => {
+    navigation.navigate('Refeicoes');
   }
 
   return (
     <Page>
       <Header>
-        <Title>Refeições</Title>
+        <Title>Listar Refeição</Title>
         <Botao
           activeOpacity={0.6}
           underlayColor="#DDDDDD"
-          onPress={handleLogoutClick}>
-          <TextButton>Logout</TextButton>
+          onPress={handleCadastrarClick}>
+          <TextButton>Cadastrar refeicão</TextButton>
+        </Botao>
+        <Botao
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={handleEditarClick}>
+          <TextButton>Editar refeicão</TextButton>
+        </Botao>
+        <Botao
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={handleListarClick}>
+          <TextButton>Listar refeicão</TextButton>
         </Botao>
       </Header>
     </Page>

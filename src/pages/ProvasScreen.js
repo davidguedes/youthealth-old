@@ -37,19 +37,39 @@ function ProvasScreen() {
 
   const navigation = useNavigation();
 
-  const handleLogoutClick = () => {
-    navigation.goBack();
+  const handleCadastrarClick = () => {
+    navigation.navigate('CadastrarProva');
+  }
+
+  const handleEditarClick = () => {
+    navigation.navigate('EditarProva');
+  }
+
+  const handleListarClick = () => {
+    navigation.navigate('Provas');
   }
 
   return (
     <Page>
       <Header>
-        <Title>Provas</Title>
+        <Title>Listar Provas</Title>
         <Botao
           activeOpacity={0.6}
           underlayColor="#DDDDDD"
-          onPress={handleLogoutClick}>
-          <TextButton>Logout</TextButton>
+          onPress={handleCadastrarClick}>
+          <TextButton>Cadastrar prova</TextButton>
+        </Botao>
+        <Botao
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={handleEditarClick}>
+          <TextButton>Editar prova</TextButton>
+        </Botao>
+        <Botao
+          activeOpacity={0.6}
+          underlayColor="#DDDDDD"
+          onPress={handleListarClick}>
+          <TextButton>Listar prova</TextButton>
         </Botao>
       </Header>
     </Page>
