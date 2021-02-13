@@ -2,9 +2,9 @@ import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import styled from 'styled-components/native';
 import HomeStack from './HomeStack';
-import RefeicoesStack from './RefeicoesStack';
-import AlimentosStack from './AlimentosStack';
-import ProvasStack from './ProvasStack';
+import ListRefeicoesScreen from './RefeicoesStack';
+import ListAlimentosScreen from './AlimentosStack';
+import ListProvasScreen from './ProvasStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +29,7 @@ export default () => (
         ),
       }}
     />
-    <Tab.Screen name="Refeicoes" component={RefeicoesStack}
+    <Tab.Screen name="Refeicoes" component={ListRefeicoesScreen}
       options={{
         tabBarLabel: 'Refeições',
         tabBarIcon: ({ focused }) => (
@@ -37,7 +37,7 @@ export default () => (
         ),
       }}
     />
-    <Tab.Screen name="Alimentos" component={AlimentosStack}
+    <Tab.Screen name="Alimentos" component={ListAlimentosScreen}
       options={{
         tabBarLabel: 'Alimentos',
         tabBarIcon: ({ focused }) => (
@@ -45,7 +45,7 @@ export default () => (
         ),
       }}
     />
-    <Tab.Screen name="Provas" component={ProvasStack}
+    <Tab.Screen name="Provas" component={ListProvasScreen}
       options={{
         tabBarLabel: 'Provas',
         tabBarIcon: ({ focused }) => (

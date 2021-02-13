@@ -1,8 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import CadastrarProvaScreen from '../pages/CadastrarProvaScreen';
-import EditarProvaScreen from '../pages/EditarProvaScreen';
-import ProvasScreen from '../pages/ProvasScreen.js';
+import EditProvaScreen from '../pages/ProvaScreen/EditProvaScreen';
+import ListProvasScreen from '../pages/ProvaScreen/ListProvasScreen';
 
 const ProvaStack = createStackNavigator();
 
@@ -10,8 +9,7 @@ export default () => (
   <ProvaStack.Navigator screenOptions={{
     headerTitleAlign: 'center'
   }}>
-    <ProvaStack.Screen name="CadastrarProva" component={CadastrarProvaScreen} />
-    <ProvaStack.Screen name="EditarProva" component={EditarProvaScreen} />
-    <ProvaStack.Screen name="Provas" component={ProvasScreen} />
+    <ProvaStack.Screen name="ListProvas" component={ListProvasScreen} />
+    <ProvaStack.Screen name="EditProva" component={EditProvaScreen} />
   </ProvaStack.Navigator>
 );

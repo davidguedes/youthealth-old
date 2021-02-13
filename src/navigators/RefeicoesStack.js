@@ -1,8 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import RefeicoesScreen from '../pages/RefeicoesScreen.js';
-import CadastrarRefeicaoScreen from '../pages/CadastrarRefeicaoScreen';
-import EditarRefeicaoScreen from '../pages/EditarRefeicaoScreen';
+import EditRefeicaoScreen from '../pages/RefeicaoScreen/EditRefeicaoScreen';
+import ListRefeicoesScreen from '../pages/RefeicaoScreen/ListRefeicoesScreen.js';
 
 const AlimentoStack = createStackNavigator();
 
@@ -10,8 +9,7 @@ export default () => (
   <AlimentoStack.Navigator screenOptions={{
     headerTitleAlign: 'center'
   }}>
-    <AlimentoStack.Screen name="Refeicoes" component={RefeicoesScreen} />
-    <AlimentoStack.Screen name="CadastrarRefeicao" component={CadastrarRefeicaoScreen} />
-    <AlimentoStack.Screen name="EditarRefeicao" component={EditarRefeicaoScreen} />
+    <AlimentoStack.Screen name="ListRefeicoes" component={ListRefeicoesScreen} />
+    <AlimentoStack.Screen name="EditRefeicao" component={EditRefeicaoScreen} />
   </AlimentoStack.Navigator>
 );

@@ -1,8 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import CadastrarAlimentoScreen from '../pages/CadastrarAlimentoScreen';
-import EditarAlimentoScreen from '../pages/EditarAlimentoScreen';
-import AlimentosScreen from '../pages/AlimentosScreen.js';
+import EditAlimentoScreen from '../pages/AlimentoScreen/EditAlimentoScreen';
+import ListAlimentosScreen from '../pages/AlimentoScreen/ListAlimentosScreen';
 
 const AlimentoStack = createStackNavigator();
 
@@ -10,8 +9,7 @@ export default () => (
   <AlimentoStack.Navigator screenOptions={{
     headerTitleAlign: 'center'
   }}>
-    <AlimentoStack.Screen name="CadastrarAlimento" component={CadastrarAlimentoScreen} />
-    <AlimentoStack.Screen name="EditarAlimento" component={EditarAlimentoScreen} />
-    <AlimentoStack.Screen name="Alimentos" component={AlimentosScreen} />
+    <AlimentoStack.Screen name="ListAlimentos" component={ListAlimentosScreen} />
+    <AlimentoStack.Screen name="EditAlimento" component={EditAlimentoScreen} />
   </AlimentoStack.Navigator>
 );
