@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import data from '../../alimentos.json';
+import React, {useState, useLayoutEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
+import data from '../../data/alimentos';
 import {
   Container,
   AddButton,
@@ -9,69 +10,119 @@ import {
   NoAlimentosImage,
   NoAlimentosText,
   FlatList,
-  Box,
-  Title,
-  Image
+  TextBottom,
 } from './styles';
+import {
+  FindArea,
+  FindInput,
+  FindImageButton,
+  FindButton,
+} from '../../components/DefaultFind';
+import {
+  Box,
+  HeaderItem,
+  Image,
+  BodyItem,
+  Title,
+  TextCat,
+} from '../../components/AlimentoItem';
 
 function ListAlimentosScreen() {
   const navigation = useNavigation();
+  const perfil = useSelector((state) => state.userReducer.perfil);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       title: 'Alimentos',
-      headerRight: () => (
-        <AddButton underlayColor="transparent" onPress={() => navigation.navigate('EditAlimento')}>
-          <AddButtonImage source={require('../../assets/add.png')} />
-        </AddButton>
-      )
+      headerRight: false,
+      headerLeft: false,
     });
-  }, []);
+    if (perfil === 'a') {
+      navigation.setOptions({
+        headerRight: () => (
+          <AddButton
+            underlayColor="transparent"
+            onPress={() => navigation.navigate('EditAlimento')}>
+            <AddButtonImage source={require('../../assets/add.png')} />
+          </AddButton>
+        ),
+      });
+    }
+  }, [navigation, perfil]);
 
-  const [listaAlimentos, setListaAlimentos] = useState(data);
+  /*
+if(perfil === 'a')
+      return (
+      navigation.setOptions({
+        headerRight: () => (
+          <AddButton
+            underlayColor="transparent"
+            onPress={() => navigation.navigate('EditAlimento')}>
+            <AddButtonImage source={require('../../assets/add.png')} />
+          </AddButton>
+        ),
+      })
+*/
 
-  useEffect(() => {
-    //setListaAlimentos(data)
-    console.log("Deu certo:" + listaAlimentos + ". Item 1. Id:" + listaAlimentos[0].id + ". Descricao:" + listaAlimentos[0].descricao
-    )
-  }, []);
+  /*
+    {perfil === 'a' &&
+      navigation.setOptions({
+        headerRight: () => (
+          <AddButton
+            underlayColor="transparent"
+            onPress={() => navigation.navigate('EditAlimento')}>
+            <AddButtonImage source={require('../../assets/add.png')} />
+          </AddButton>
+        ),
+      });
+    }*/
 
-  const handleCadastrarClick = () => {
-    navigation.navigate('EditAlimento');
-  }
-
-  const handleEditarClick = () => {
-    navigation.navigate('EditAlimento');
-  }
-
-  const handleAlimentoPress = () => {
-
-  }
+  const [ListaAlimentos] = useState(data);
 
   return (
     <Container>
-      {listaAlimentos.length == 0 &&
+      {ListaAlimentos.length === 0 && (
         <NoAlimentos>
-          <NoAlimentosImage source={require("../../assets/harvest.png")} />
+          <NoAlimentosImage source={require('../../assets/harvest.png')} />
           <NoAlimentosText>Nenhum alimento</NoAlimentosText>
         </NoAlimentos>
-      }
-      {listaAlimentos &&
+      )}
+      {ListaAlimentos && (
         <>
-          <Title>Total de alimentos: {listaAlimentos.length}</Title>
+          <FindArea>
+            <FindInput
+              placeholder="Pesquise por um alimento"
+              placeholderTextColor="#EEE"
+              returnKeyType="send"
+            />
+            <FindButton activeOpacity={0.6} underlayColor="#DDDDDD">
+              <FindImageButton source={require('../../assets/loupe-w.png')} />
+            </FindButton>
+          </FindArea>
           <FlatList
-            data={listaAlimentos}
-            keyExtractor={item => item.id}
-            renderItem={({ item }) => {
-              <Box>
-                <Title>{item.descricao}</Title>
-                <Image source={{ uri: item.image }} />
-              </Box>
+            data={ListaAlimentos}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({item}) => {
+              const {descricao, image, categorias} = item;
+              return (
+                <Box>
+                  <>
+                    <HeaderItem>
+                      <Image source={image} resizeMode="contain" />
+                    </HeaderItem>
+                    <BodyItem>
+                      <Title>{descricao}</Title>
+                      <TextCat>{categorias}</TextCat>
+                    </BodyItem>
+                  </>
+                </Box>
+              );
             }}
           />
+          <TextBottom>Total de alimentos: {ListaAlimentos.length}</TextBottom>
         </>
-      }
-    </Container >
+      )}
+    </Container>
   );
 }
 

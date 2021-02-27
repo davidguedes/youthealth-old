@@ -1,56 +1,54 @@
-import React, { useLayoutEffect } from 'react';
-import { connect } from 'react-redux';
-import { useNavigation, useRoute } from '@react-navigation/native';
+import React, {useLayoutEffect} from 'react';
+import {useSelector} from 'react-redux';
+import {useNavigation} from '@react-navigation/native';
 import {
   Container,
   SettingsButton,
-  SettingsButtonImage,
+  LogoutButton,
+  HeaderButtonImage,
   Header,
   Title,
   Description,
-  Image
+  Image,
 } from './styles';
 
-const HomeScreen = (props) => {
-
+const HomeScreen = () => {
   const navigation = useNavigation();
-  const route = useRoute();
+  const nome = useSelector((state) => state.userReducer.nome);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       title: 'Home',
       headerRight: () => (
-        <SettingsButton underlayColor="transparent" onPress={() => navigation.navigate('Settings')}>
-          <SettingsButtonImage source={require('../../assets/settings.png')} />
+        <SettingsButton
+          underlayColor="transparent"
+          onPress={() => navigation.navigate('Settings')}>
+          <HeaderButtonImage source={require('../../assets/settings.png')} />
         </SettingsButton>
-      )
+      ),
+      headerLeft: () => (
+        <LogoutButton
+          underlayColor="transparent"
+          onPress={() => navigation.navigate('Login')}>
+          <HeaderButtonImage source={require('../../assets/logout.png')} />
+        </LogoutButton>
+      ),
     });
-  }, []);
-
-  const handleLogoutClick = () => {
-    navigation.goBack();
-  }
+  }, [navigation]);
 
   return (
     <Container>
       <Header>
-        <Title>Seja bem-vindo, {props.nome}!</Title>
-        <Description>O YoutHealth foi criado para ajudar você, estudade, a ter um melhor controle sobre sua alimentação! Navegue entre nosso menu de opções e comece agora a aproveitar nosso App da melhor forma possível.</Description>
+        <Title>Seja bem-vindo, {nome}!</Title>
+        <Description>
+          O YoutHealth foi criado para ajudar você, estudade, a ter um melhor
+          controle sobre sua alimentação! Navegue entre o nosso menu de opções e
+          comece agora mesmo a aproveitar nosso App da melhor forma possível.
+        </Description>
         <Image source={require('../../images/logo-big.png')} />
       </Header>
     </Container>
   );
-}
+};
 
-const mapStateToProps = (state) => {
-  return {
-    nome: state.userReducer.nome,
-    idAluno: state.userReducer.idAluno
-  };
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
+export default HomeScreen;
