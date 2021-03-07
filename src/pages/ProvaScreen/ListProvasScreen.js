@@ -68,6 +68,8 @@ function ListProvasScreen() {
           </FindArea>
           <FlatList
             data={ListProvas}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({item}) => {
               const {date, materia, anotacoes, alerta} = item;
@@ -87,7 +89,7 @@ function ListProvasScreen() {
               );
             }}
           />
-          <TextBottom>Total de alimentos: {ListProvas.length}</TextBottom>
+          <TextBottom>Total de provas: {ListProvas.length}</TextBottom>
         </>
       )}
     </Container>

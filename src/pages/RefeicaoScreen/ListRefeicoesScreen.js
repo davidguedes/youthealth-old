@@ -68,6 +68,8 @@ function ListRefeicoesScreen() {
           </FindArea>
           <FlatList
             data={ListRefeicoes}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({item}) => {
               const {date, periodo, alimentos} = item;
@@ -97,7 +99,7 @@ function ListRefeicoesScreen() {
               );
             }}
           />
-          <TextBottom>Total de alimentos: {ListRefeicoes.length}</TextBottom>
+          <TextBottom>Total de refeições: {ListRefeicoes.length}</TextBottom>
         </>
       )}
     </Container>

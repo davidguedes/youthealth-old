@@ -101,6 +101,8 @@ if(perfil === 'a')
           </FindArea>
           <FlatList
             data={ListaAlimentos}
+            showsVerticalScrollIndicator={false}
+            showsHorizontalScrollIndicator={false}
             keyExtractor={(item) => item.id.toString()}
             renderItem={({item}) => {
               const {descricao, image, categorias} = item;
