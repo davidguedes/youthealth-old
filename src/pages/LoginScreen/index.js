@@ -5,12 +5,48 @@ import {useNavigation} from '@react-navigation/native';
 import {Page, KeyboardArea, Image, TextButton, TextCopy} from './styles';
 import DefaultInput from '../../components/DefaultInput';
 import DefaultButton from '../../components/DefaultButton';
+const axios = require('axios');
 
 const LoginScreen = () => {
   const navigation = useNavigation();
   const user = useSelector((state) => state.userReducer);
 
   const handleLoginClick = () => {
+    const options = {
+      method: 'POST',
+      body: JSON.stringify({
+        idAluno: login,
+        senha: senha,
+      }),
+    };
+    const promise = fetch('http://192.168.0.12:5000/user/signin', options);
+    promise
+      .then((response) => {
+        navigation.navigate('Home');
+        console.log(response);
+      })
+      .catch(function (error) {
+        Alert.alert('Dados inválidos', error.toString());
+        this.input_1.focus();
+        setSenha('');
+      });
+    /*
+    axios
+      .post('http://localhost:5000/user/signin/', {
+        idAluno: '997082',
+        senha: '1401',
+      })
+      .then(function (response) {
+        navigation.navigate('Home');
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+        this.input_1.focus();
+        setSenha('');
+      });
+      */
+    /*
     if (login === user.idAluno && senha === user.senha) {
       navigation.navigate('Home');
     } else {
@@ -18,6 +54,7 @@ const LoginScreen = () => {
       this.input_1.focus();
       setSenha('');
     }
+    */
   };
 
   const handleRegisterClick = () => {
